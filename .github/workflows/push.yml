@@ -81,8 +81,8 @@ jobs:
     steps:
     -uses: actions/checkout@v3
 
-    -name: DownloadBinaries
-    -uses: actions/download-artifact@v3
+    - name: DownloadBinaries
+      uses: actions/download-artifact@v3
       with:
         name: my-artifact
         path: x64\Release
