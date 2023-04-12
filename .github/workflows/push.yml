@@ -37,11 +37,7 @@ jobs:
 
   lint:
     runs-on: windows-latest
-
     steps:
-    -name: RunLint
+    - name: RunLint
       working-directory: ${{env.GITHUB_WORKSPACE}}
-
       run: echo LINT
-
-  # test:
