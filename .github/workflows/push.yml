@@ -40,8 +40,8 @@ jobs:
 
     steps:
     -name: RunLint
-    working-directory: ${{env.GITHUB_WORKSPACE}}
+      working-directory: ${{env.GITHUB_WORKSPACE}}
 
-    run: echo LINT
+      run: echo LINT
 
   # test:
