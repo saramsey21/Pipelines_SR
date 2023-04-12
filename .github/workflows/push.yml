@@ -72,3 +72,39 @@ jobs:
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: VSTest.Console.exe x64\Release\UnitTest1.dll
 
+  SaveBinary:
+    needs: [test]
+    runs-on: windows-latest
+
+    steps:
+    -uses: actions/checkout@v3
+
+    -name: DownloadBinaries
+      uses: actions/download-artifact@v3
+      with:
+        name: my-artifact
+        path: x64\Release
+
+      -name: stage
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        run: copy x64\Release\PipelinesExe.exe .
+
+      -name: addEmail
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        run: git config --global user.email "saramsey21@gmail.com"
+        
+      -name: addName
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        run: git config --global user.name "Sarah Ramsey"
+
+      -name: add
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        run: git add PipeplinesExe.exe
+
+      -name: commit
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        run: git commit -m "generated"
+
+      -name: push
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        run: git push
